@@ -16,13 +16,28 @@ if (isset($_POST['btn'])) {
 
     $result = $db->runSQL($sql_select, $arguments)->fetchAll();
     if (count($result) > 0) {
-        //kiểm tra mk
-        $pass = $result[0]['password'];
-        
+        $username = $result[0]['username'];
+        $status = $result[0]['status'];
+        $role = $result[0]['role'];
+        $password_hash = $result[0]['password'];
 
+        //kiểm tra mk nhập vào có trùng với giá trị mk đã đc băm trong db hay không
+        if (password_verify($txt_pass, $password_hash)) {
+            session_start();
+            $_SESSION['username'] = $username;
+            $_SESSION['role'] = $role;
 
+            if ($status == 1) {
+                if ($role == 0) header("location:user.php");
+                else header("location:admin.php");
+            } else {
+                echo $twig->render('login_form.html', ['mess' => "tài khoản chưa đc kích hoạt. Vui lòng kích hoạt tài khoản trc khi đăng nhập"]);
+            }
+        } else {
+            echo $twig->render('login_form.html', ['mess' => "password không chính xác. Vui lòng kiểm tra lại thông tin đăng nhâp"]);
+        }
     } else {
-        echo $twig->render('login_form.html',['mess'=>"Tài khoản không chính xác. Vui lòng kiểm tra lại thông tin đăng nhâp"]);
+        echo $twig->render('login_form.html', ['mess' => "email/username không chính xác. Vui lòng kiểm tra lại thông tin đăng nhâp"]);
     }
 } else {
     echo $twig->render('login_form.html');

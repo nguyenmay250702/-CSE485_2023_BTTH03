@@ -37,7 +37,7 @@ if (isset($_POST['btn'])) {
         $db->runSQL($sql_insert, $arguments);
 
         //tạo ra đường dẫn kích hoạt
-        $path = '<a href="http://localhost/private/BTTH03/Bai_1/active_account.php?email=' . $txt_email . '&activation_code=' . $activation_code . '"><button">Kích hoạt tài khoản YoYo</button></a>';
+        $path = '<a href="http://localhost/private/BTTH03/CSE485_2023_BTTH03/Bai_1/active_account.php?email=' . $txt_email . '&activation_code=' . $activation_code . '"><button">Kích hoạt tài khoản YoYo</button></a>';
 
         //gửi link kích hoạt tk vào email
         $emailServer = new MyEmailServer();
