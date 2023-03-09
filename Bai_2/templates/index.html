@@ -1,0 +1,25 @@
+{% extend "layout.html" %}
+{% block content%}
+
+<a href="#">Thêm</a>
+<table class="table table-dark table-hover">
+    <row>
+        <th>#</th>
+        <th>name</th>
+        <th>email</th>
+        <th>sửa</th>
+        <th>xóa</th>
+    </row>
+    <tbody>
+        {% for user in users%}
+        <row>
+            <td>#</td>
+            <td>name</td>
+            <td>email</td>
+            <td class="btn btn-warning">sửa</td>
+            <td class="btn btn-danger">xóa</td>
+        </row>
+        {% endfor%}
+    </tbody>
+</table>
+{% endblock}
