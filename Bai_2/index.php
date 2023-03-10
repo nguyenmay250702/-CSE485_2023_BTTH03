@@ -20,7 +20,7 @@ switch ($action) {
             header('Location: index.php');
             exit;
         }
-        echo $twig->render('add.twig');
+        echo $twig->render('add.html');
         break;
     case 'edit':
         $id = $_GET['id'];
@@ -35,14 +35,14 @@ switch ($action) {
             header('Location: index.php');
             exit;
         }
-        echo $twig->render('edit.twig', ['user' => $user]);
+        echo $twig->render('edit.html', ['user' => $user]);
         break;
     case 'delete':
         $id = $_GET['id'];
         $stmt = $db->prepare("DELETE FROM users WHERE id = ?");
         $stmt->execute([$id]);
         header('Location: index.php');
-        exit;
+        // exit;
         break;
     default:
         $stmt = $db->query("SELECT * FROM users");

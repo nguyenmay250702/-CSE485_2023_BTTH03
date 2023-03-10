@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{%block linkCss%}<link rel="stylesheet" href="assest/css/style.css"> {%endblock%}
+
+{% block content %}
+<h2>Edit User</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label for="formGroupExampleInput" class="form-label lable_add">name</label>
+        <input type="text" class="form-control" id="formGroupExampleInput" required name="name" value="{{user.name}}">
+      </div>
+      <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label lable_add">email</label>
+        <input type="email" class="form-control" id="formGroupExampleInput2" required name="email" value="{{user.email}}">
+      </div>
+      <input class="btn btn-info" type="submit" value="Edit User">
+</form>
+{% endblock %}

@@ -1,25 +1,26 @@
-{% extend "layout.html" %}
+{% extends "layout.html" %}
+{%block linkCss%}<link rel="stylesheet" href="assest/css/style.css"> {%endblock%}
 {% block content%}
-
-<a href="#">Thêm</a>
-<table class="table table-dark table-hover">
-    <row>
+<h2>Quản lý users</h2>
+<a href="?action=add" class="btn btn-success">Thêm</a>
+<table class="table table-dark table-hover table-striped">
+    <tr>
         <th>#</th>
         <th>name</th>
         <th>email</th>
-        <th>sửa</th>
-        <th>xóa</th>
-    </row>
+        <th class="display1">sửa</th>
+        <th class="display1">xóa</th>
+    </tr>
     <tbody>
         {% for user in users%}
-        <row>
+        <tr>
             <td>#</td>
-            <td>name</td>
-            <td>email</td>
-            <td class="btn btn-warning">sửa</td>
-            <td class="btn btn-danger">xóa</td>
-        </row>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td class="btn btn-warning"><a href="?action=edit&id={{user.id}}">sửa</a></td>
+            <td class="btn btn-danger"><a href="?action=delete&id={{user.id}}">xóa</a></td>
+        </tr>
         {% endfor%}
     </tbody>
 </table>
-{% endblock}
+{% endblock%}
